@@ -3,11 +3,11 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
-   // private Animator animator;
+    private Animator animator;
 
     void Start()
     {
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -21,18 +21,18 @@ public class PlayerMovement : MonoBehaviour
         transform.Translate(move * moveSpeed * Time.deltaTime, Space.World);
 
         // Update animation
-        //UpdateAnimation(move);
+        UpdateAnimation(move);
     }
 
-    //void UpdateAnimation(Vector3 move)
-   // {
-       // bool isMoving = move.magnitude > 0.1f;
-       // animator.SetBool("isWalking", isMoving);
+    void UpdateAnimation(Vector3 move)
+    {
+        bool isMoving = move.magnitude > 0.1f;
+        animator.SetBool("isWalking", isMoving);
 
-       // if (isMoving)
-       // {
-            //animator.SetFloat("InputX", move.x);
-            //animator.SetFloat("InputZ", move.z);
-        //}
-    //}
+        if (isMoving)
+        {
+            animator.SetFloat("InputX", move.x);
+            animator.SetFloat("InputZ", move.z);
+        }
+    }
 }
